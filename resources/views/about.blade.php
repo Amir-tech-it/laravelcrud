@@ -1,2 +1,2 @@
-<h1>This is about page</h1>
+<x-header data="about component header"/>
 <a href="/hello">Hello Page</a>

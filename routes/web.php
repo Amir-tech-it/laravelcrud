@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\customcontroller;
+use App\Http\Controllers\UsersController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +17,14 @@ use App\Http\Controllers\customcontroller;
 */
 
 Route::get('/', function () {
-    return redirect('about');
+    return view('welcome');
 });
 Route::view("about", '/about');
 Route::view("hello", '/hello');
 
-Route::get("user",[customcontroller::class,'show']);
+Route::get("users",[UsersController::class,'viewload']);
+// Route::view("user", '/users');
+
+// Route::get("user",[customcontroller::class,'show']);
 
 
