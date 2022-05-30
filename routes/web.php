@@ -20,9 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::view("about", '/about');
-Route::view("hello", '/hello');
+Route::view("hello", '/hello'); //view page
+Route::view("noaccess", '/noaccess');
 
-Route::get("users",[UsersController::class,'viewload']);
+// Route::get("users",[UsersController::class,'viewload']);   array data on userspage
+Route::post("users",[UsersController::class,'getdata']);  //form submit data route
+Route::view("login", 'login');
+
+
 // Route::view("user", '/users');
 
 // Route::get("user",[customcontroller::class,'show']);
