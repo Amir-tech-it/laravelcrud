@@ -8,6 +8,6 @@ class UserController extends Controller
 {
     //
     function index(){
-       return DB::select('select * from user');
+       return DB::select('select * from users');
     }
 }

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\customcontroller;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HtController;
 
 
 /*
@@ -28,6 +30,8 @@ Route::view("noaccess", '/noaccess');
 Route::post("users",[UsersController::class,'getdata']);  //form submit data route
 Route::view("login", 'login');
 Route::get("users",[UserController::class,'index']);
+Route::get("employee",[EmployeeController::class,'getData']);
+Route::get("hcont",[HtController::class,'index']);
 Route::group(['middleware'=>['protectedpages']],function(){
     Route::get('/', function () {
         return view('welcome');
