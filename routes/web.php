@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\customcontroller;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -26,7 +27,7 @@ Route::view("noaccess", '/noaccess');
 // Route::get("users",[UsersController::class,'viewload']);   array data on userspage
 Route::post("users",[UsersController::class,'getdata']);  //form submit data route
 Route::view("login", 'login');
-
+Route::get("users",[UserController::class,'index']);
 Route::group(['middleware'=>['protectedpages']],function(){
     Route::get('/', function () {
         return view('welcome');
