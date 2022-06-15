@@ -8,6 +8,10 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HtController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\FlashController;
+use App\Http\Controllers\UploadFile;
+
+
 
 
 /*
@@ -50,6 +54,10 @@ Route::get('/logout', function () {
    }
   return redirect('logsession'); 
 });
+Route::view("uploadfile",'upload');
+Route::post("fileupload",[UploadFile::class,'upload']);
+Route::view("flashform",'storeuser');
+Route::post("storeflash",[FlashController::class,'user']);
 Route::post("lgws",[loginController::class,'loginwsession']);
 Route::put("sbmt",[ApiController::class,'testRequest']);
 Route::get("users",[UserController::class,'index']);
