@@ -10,6 +10,10 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\FlashController;
 use App\Http\Controllers\UploadFile;
+use App\Http\Controllers\CrudController;
+use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\CustomerController;
+use App\Models\Customer;
 
 
 
@@ -54,6 +58,7 @@ Route::get('/logout', function () {
    }
   return redirect('logsession'); 
 });
+Route::view("localizaed",'localization');
 Route::view("uploadfile",'upload');
 Route::post("fileupload",[UploadFile::class,'upload']);
 Route::view("flashform",'storeuser');
@@ -64,11 +69,17 @@ Route::get("users",[UserController::class,'index']);
 Route::get("employee",[EmployeeController::class,'getData']);
 Route::get("hcont",[HtController::class,'index']);
 Route::group(['middleware'=>['protectedpages']],function(){
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // });
     Route::view("login", 'login');
+    Route::get('/localizaed/{lang}', function ($lang) {
+        App::setlocale($lang);
+        return view('localization');
+    });
 });
+
+
 
 
 // Route::view("user", '/users');
@@ -76,3 +87,40 @@ Route::group(['middleware'=>['protectedpages']],function(){
 // Route::get("user",[customcontroller::class,'show']);
 
 
+// wscubetech
+// Route::get('/{name?}', function ($name = null) {
+//     $demo = "<h2>this is demo </h2>";
+//     $data = compact('name','demo');
+//     return view('wshome')->with($data);
+// });
+
+
+Route::get('/', function () {
+    return view('home');
+});
+
+
+Route::get('about123', function () {
+    return view('layout.about123');
+});
+
+Route::get("/register",[RegistrationController::class,'index']);
+Route::post("/register",[RegistrationController::class,'register']);
+
+// resource controller route
+
+Route::resource('crud',CrudController::class);
+
+Route::get('customer', function(){
+  $customers = Customer::all();
+  echo "<pre>";
+  print_r($customers->toArray());
+});
+
+
+Route::get('/customerfrm',[CustomerController::class,'index'])->name('registerform');
+Route::get('customer/view',[CustomerController::class,'view']);
+Route::get('customer/delete/{id}',[CustomerController::class,'delete'])->name('deletecustomer');
+Route::get('customer/edit/{id}',[CustomerController::class,'edit'])->name('customeredit');
+Route::get('customer/update/{id}',[CustomerController::class,'update'])->name('customerupdate');
+Route::post("/customerfr",[CustomerController::class,'register']);
