@@ -70,8 +70,16 @@ class CustomerController extends Controller
        
     }
 
-    public function update($id){
-
+    public function update($id, Request $req ){
+        $customer = Customer::find($id);
+        $customer->name = $req['name'];
+        $customer->email = $req['email'];
+        $customer->country = $req['country'];
+        $customer->state = $req['state'];
+        $customer->address = $req['address'];
+        $customer->dob = $req['date'];
+        $customer->save();
+        return redirect('/customer/view');
     }
 
 }

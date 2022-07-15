@@ -10,24 +10,24 @@ class Input extends Component
     public $type;
     public $label;
     public $name;
-    public $demo;
+    // public $demo;
     public $value;
-    public $is_check;
+    // public $is_check;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($type, $label, $name, $id, $demo = 0, $value,$is_check='false')
+    public function __construct($type, $label, $name, $id,  $value)
     {
         $this->type = $type;
         $this->label = $label;
         $this->name = $name;
         $this->id = $id;
-        $this->demo = $demo;
+        // $this->demo = $demo;
         $this->value = $value ;
-        $this->is_check = $is_check; 
+        // $this->is_check = $is_check; 
     }
 
     /**

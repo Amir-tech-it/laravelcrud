@@ -122,5 +122,5 @@ Route::get('/customerfrm',[CustomerController::class,'index'])->name('registerfo
 Route::get('customer/view',[CustomerController::class,'view']);
 Route::get('customer/delete/{id}',[CustomerController::class,'delete'])->name('deletecustomer');
 Route::get('customer/edit/{id}',[CustomerController::class,'edit'])->name('customeredit');
-Route::get('customer/update/{id}',[CustomerController::class,'update'])->name('customerupdate');
+Route::post('customer/update/{id}',[CustomerController::class,'update'])->name('customerupdate');
 Route::post("/customerfr",[CustomerController::class,'register']);

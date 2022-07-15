@@ -8,3 +8,5 @@
 </head>
 <body>
     <h1>Header Area</h1>
+    <a href="{{url('/')}}">Home</a>
+<a href="{{url('/customerfrm')}}">Register</a>
