@@ -26,7 +26,15 @@
 <a href="{{url('/')}}">Home</a>
 <a href="{{url('/customerfrm')}}">Register</a>
 <a href="{{route('registerform')}}">Register1</a>
+<h1>
+  
+    @if(session()->has('Name'))
+  {{session()->get('Name')}}
+  @else
+  Guest
+  @endif
 
+</h1>
 <h1>Table Data</h1>
 
 
@@ -37,8 +45,9 @@
     <th>Gender</th>
     <th>Address</th>
     <th>State</th>
-    <th>Country</th>
+    <!-- <th>Country</th> -->
     <th>Status</th>
+    <th>DOB</th>
     <th>Actions</th>
   </tr>
   @foreach ($customers as $customer)
@@ -58,7 +67,7 @@
     </td>
     <td>{{$customer->address}}</td>
     <td>{{$customer->state}}</td>
-    <td>{{$customer->country}}</td>
+    <!-- <td>{{$customer->country}}</td> -->
     <td> 
       @if($customer->status == "1")
       Active
@@ -67,7 +76,8 @@
       @endif
      
     </td>
-    <td>
+   <td>{{formatted_date($customer->dob,"d-M-Y")}}</td>
+   <td>
       <a href="{{route('deletecustomer',['id' => $customer->id])}}">Delete</a>
       <!-- <a href="{{url('customer/delete/')}}/{{$customer->id}}">Delete</a> &nbsp &nbsp -->
       <a href="{{route('customeredit',['id' => $customer->id])}}">Edit</a>

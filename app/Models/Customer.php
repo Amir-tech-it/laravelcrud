@@ -11,4 +11,8 @@ class Customer extends Model
     protected $table = "customers";
     protected $primaryKey = "id";
 
+
+    public function setNameAttribute($value){
+        $this->attributes['name'] = ucwords($value);
+    }
 }

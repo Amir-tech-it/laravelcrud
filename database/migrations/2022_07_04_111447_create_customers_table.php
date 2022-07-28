@@ -14,11 +14,11 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id();             //php artisan make:migration create_customers_table
+            $table->id();             //3 creating migration table php artisan make:migration create_customers_table
             $table->string('name',60);
             $table->string('email',100);
-            $table->enum('gender',["M","F","O"]);
-            $table->text('address');
+            $table->enum('gender',["M","F","O"]); //1php artisan config:cache
+            $table->text('address');                          //php artisan migrate 2 already created
             $table->date('dob')->nullable();
             $table->string('password');
             $table->boolean('status')->default(1);

@@ -14,6 +14,7 @@ use App\Http\Controllers\CrudController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\CustomerController;
 use App\Models\Customer;
+use Illuminate\Http\Request;
 
 
 
@@ -123,4 +124,13 @@ Route::get('customer/view',[CustomerController::class,'view']);
 Route::get('customer/delete/{id}',[CustomerController::class,'delete'])->name('deletecustomer');
 Route::get('customer/edit/{id}',[CustomerController::class,'edit'])->name('customeredit');
 Route::post('customer/update/{id}',[CustomerController::class,'update'])->name('customerupdate');
-Route::post("/customerfr",[CustomerController::class,'register']);
+Route::post("/customerfrm",[CustomerController::class,'register']);
+Route::get('get-all-session', function () {
+    $session = session()->all();
+    p($session);
+});
+Route::get('set-session',function(Request $request){
+   $request->session()->put('Name','Vista');
+   $request->session()->flash('Message','Success');
+   return redirect('get-all-session');
+});
